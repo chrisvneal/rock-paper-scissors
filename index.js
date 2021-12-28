@@ -101,7 +101,13 @@ function startGame() {
     let computerAnswer = computerPlay();
 
     // play round with players' answers
-    playRound(playerAnswer.toLowerCase(), computerAnswer.toLowerCase());
+
+    if (playerAnswer !== "end") {
+      playRound(playerAnswer.toLowerCase(), computerAnswer.toLowerCase());
+    } else {
+      endGame();
+      return;
+    }
 
     // display current game stats (in console)
     console.log(
@@ -114,4 +120,9 @@ function startGame() {
 
   // display player and computer score in console
   displayScore(playerScore, computerScore);
+}
+
+function endGame() {
+  console.clear();
+  console.log("Game ended!");
 }
