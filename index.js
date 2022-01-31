@@ -90,37 +90,37 @@ const playRound = (playerSelection, computerSelection) => {
 };
 
 // Start a game of "Rock, Paper, Scissors"
-function startGame() {
-  // clear the console
-  console.clear();
+// function startGame() {
+//   // clear the console
+//   console.clear();
 
-  // loop through 5 rounds of rock, paper, scissors
-  for (let i = 0; i < 5; i++) {
-    // get players' answers
-    let playerAnswer = prompt("Choose Rock, Paper, or Scissors");
-    let computerAnswer = computerPlay();
+//   // loop through 5 rounds of rock, paper, scissors
+//   for (let i = 0; i < 5; i++) {
+//     // get players' answers
+//     let playerAnswer = prompt("Choose Rock, Paper, or Scissors");
+//     let computerAnswer = computerPlay();
 
-    // play round with players' answers
+//     // play round with players' answers
 
-    if (playerAnswer !== "end") {
-      playRound(playerAnswer.toLowerCase(), computerAnswer.toLowerCase());
-    } else {
-      endGame();
-      return;
-    }
+//     if (playerAnswer !== "end") {
+//       playRound(playerAnswer.toLowerCase(), computerAnswer.toLowerCase());
+//     } else {
+//       endGame();
+//       return;
+//     }
 
-    // display current game stats (in console)
-    console.log(
-      "Game " + (i + 1) + ": Player: ",
-      playerAnswer,
-      "Computer: ",
-      computerAnswer
-    );
-  }
+//     // display current game stats (in console)
+//     console.log(
+//       "Game " + (i + 1) + ": Player: ",
+//       playerAnswer,
+//       "Computer: ",
+//       computerAnswer
+//     );
+//   }
 
-  // display player and computer score in console
-  displayScore(playerScore, computerScore);
-}
+//   // display player and computer score in console
+//   displayScore(playerScore, computerScore);
+// }
 
 function endGame() {
   console.clear();
