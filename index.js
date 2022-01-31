@@ -5,8 +5,6 @@ document.querySelectorAll(".game-btn").forEach((btn) => {
   });
 });
 
-// create the answers
-
 playSet = (playerSelection) => {
   const computerSelection = computerPlay();
   displaySetOutcome(playerSelection, computerSelection);
@@ -20,7 +18,10 @@ computerPlay = () => {
 };
 
 displaySetOutcome = (playerSelection, computerSelection) => {
-  console.log(playerSelection, computerSelection);
+  const userAnswer = document.querySelector(".user-answer");
+  const computerAnswer = document.querySelector(".computer-answer");
+  userAnswer.innerHTML = playerSelection;
+  computerAnswer.innerHTML = computerSelection;
 };
 
 // display total scores after game (console)
