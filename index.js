@@ -1,6 +1,13 @@
-// Create button to start game
-const playGameBtn = document.querySelector("#playGameBtn");
-playGameBtn.addEventListener("click", startGame);
+document.querySelectorAll(".game-btn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const playerSelection = e.target.textContent.toLowerCase();
+    playSet(playerSelection);
+  });
+});
+
+playSet = (playerSelection) => {
+  console.log(playerSelection);
+};
 
 // create the answers
 const answers = ["rock", "paper", "scissors"];
