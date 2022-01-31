@@ -1,3 +1,4 @@
+// When a button is initially clicked, it starts game and plays a set w/ player's selection
 document.querySelectorAll(".game-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const playerSelection = e.target.textContent.toLowerCase();
@@ -5,8 +6,25 @@ document.querySelectorAll(".game-btn").forEach((btn) => {
   });
 });
 
+// keep players score
+let userScore = 0;
+let computerScore = 0;
+const userAnswerOutput = document.querySelector(".user-answer");
+const computerAnswerOutput = document.querySelector(".computer-answer");
+const userScoreOutput = document.querySelector(".user-score");
+const computerScoreOutput = document.querySelector(".computer-score");
+
+// get player and computer answers, display set outcome
 playSet = (playerSelection) => {
+  // get computer's selection
   const computerSelection = computerPlay();
+
+  // for each set, change player score
+  changeScore(playerSelection, computerSelection);
+
+  // check scores to see if have winner yet
+  checkScores();
+
   displaySetOutcome(playerSelection, computerSelection);
 };
 
@@ -17,120 +35,93 @@ computerPlay = () => {
   return answers[randNum];
 };
 
-displaySetOutcome = (playerSelection, computerSelection) => {
-  const userAnswer = document.querySelector(".user-answer");
-  const computerAnswer = document.querySelector(".computer-answer");
-  userAnswer.innerHTML = playerSelection;
-  computerAnswer.innerHTML = computerSelection;
+// populate game stat fields
+let displaySetOutcome = (playerSelection, computerSelection) => {
+  userAnswerOutput.innerHTML = playerSelection;
+  computerAnswerOutput.innerHTML = computerSelection;
+  userScoreOutput.innerHTML = userScore;
+  computerScoreOutput.innerHTML = computerScore;
 };
 
-// display total scores after game (console)
-function displayScore(playerScore, computerScore) {
-  playerScore > computerScore
-    ? console.log("Player wins!")
-    : console.log("Computer wins!");
-  console.log("Player score: ", playerScore);
-  console.log("Computer score: ", computerScore);
-}
+let addScore = (player) => {
+  player === "user" ? userScore++ : computerScore++;
+};
 
-// keep players score
-let playerScore = 0;
-let computerScore = 0;
-
-// Return results from a single round
-const playRound = (playerSelection, computerSelection) => {
-  switch (playerSelection) {
+// Return results from a single set
+let changeScore = (userSelection, computerSelection) => {
+  // console.log(userSelection, computerSelection);
+  switch (userSelection) {
     case "rock":
       switch (computerSelection) {
         case "rock":
-          return "Tie! Go again!!";
-          break;
+          return;
         case "paper":
-          deductPoint(playerScore);
-          computerScore++;
-          return "You lose! Paper crushes rock";
+          addScore("computer");
           break;
         case "scissors":
-          deductPoint(computerScore);
-          playerScore++;
-          return "You win! Rock crushes scissors";
+          addScore("user");
           break;
         default:
-          return;
+          break;
       }
+      break;
     case "paper":
       switch (computerSelection) {
         case "paper":
-          return "Tie! Go again!!";
-          break;
+          return;
         case "rock":
-          deductPoint(computerScore);
-          playerScore++;
-          return "You win! Paper covers rock!!";
+          addScore("user");
           break;
         case "scissors":
-          deductPoint(playerScore);
-          computerScore++;
-          return "You lose! Scissors cut paper!";
+          addScore("computer");
           break;
         default:
-          return;
+          break;
       }
+      break;
     case "scissors":
       switch (computerSelection) {
         case "scissors":
-          return "Tie! Go again!!";
+          return;
           break;
         case "rock":
-          deductPoint(playerScore);
-          computerScore++;
-          return "You lose! Rock crushes paper!!";
+          addScore("computer");
           break;
         case "paper":
-          deductPoint(computerScore);
-          playerScore++;
-          return "You win! Scissors cut paper!";
+          addScore("user");
           break;
         default:
-          return;
+          break;
       }
+      break;
+    default:
+      return;
   }
 };
 
-// Start a game of "Rock, Paper, Scissors"
-// function startGame() {
-//   // clear the console
-//   console.clear();
+// Check scores to see if there is a winner
+let checkScores = () => {
+  let winner;
+  if (userScore == 5) {
+    winner = true;
+    console.log("User wins!!");
+  }
 
-//   // loop through 5 rounds of rock, paper, scissors
-//   for (let i = 0; i < 5; i++) {
-//     // get players' answers
-//     let playerAnswer = prompt("Choose Rock, Paper, or Scissors");
-//     let computerAnswer = computerPlay();
+  if (computerScore == 5) {
+    winner = true;
+    console.log("Computer wins!");
+  }
 
-//     // play round with players' answers
+  if (winner) {
+    setTimeout(resetGame, 4000);
+  }
+};
 
-//     if (playerAnswer !== "end") {
-//       playRound(playerAnswer.toLowerCase(), computerAnswer.toLowerCase());
-//     } else {
-//       endGame();
-//       return;
-//     }
-
-//     // display current game stats (in console)
-//     console.log(
-//       "Game " + (i + 1) + ": Player: ",
-//       playerAnswer,
-//       "Computer: ",
-//       computerAnswer
-//     );
-//   }
-
-//   // display player and computer score in console
-//   displayScore(playerScore, computerScore);
-// }
-
-function endGame() {
-  console.clear();
-  console.log("Game ended!");
-}
+let resetGame = () => {
+  userScore = 0;
+  computerScore = 0;
+  userScoreOutput.innerHTML = userScore;
+  computerScoreOutput.innerHTML = computerScore;
+  userAnswerOutput.innerHTML = " ";
+  computerAnswerOutput.innerHTML = " ";
+};

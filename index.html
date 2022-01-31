@@ -9,16 +9,19 @@
   </head>
   <body>
     <h1>Rock, Paper, Scissors</h1>
+    <button onClick="resetGame()" class="reset-btn btn">Reset</button>
 
-    <button class="rock-btn game-btn">Rock</button>
-    <button class="paper-btn game-btn">Paper</button>
-    <button class="scissors-btn game-btn">Scissors</button>
+    <div class="game-btn-set">
+      <button class="rock-btn game-btn btn">Rock</button>
+      <button class="paper-btn game-btn btn">Paper</button>
+      <button class="scissors-btn game-btn btn">Scissors</button>
+    </div>
     <div class="game-data">
       <p>User: <span class="user-answer"></span></p>
       <p>Computer: <span class="computer-answer"></span></p>
       <hr />
-      <p>User Score: 10</p>
-      <p>Computer Score: 10</p>
+      <p>User Score: <span class="user-score">0</span></p>
+      <p>Computer Score: <span class="computer-score">0</span></p>
     </div>
 
     <script src="index.js"></script>
