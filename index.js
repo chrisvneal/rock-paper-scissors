@@ -5,23 +5,23 @@ document.querySelectorAll(".game-btn").forEach((btn) => {
   });
 });
 
+// create the answers
+
 playSet = (playerSelection) => {
-  console.log(playerSelection);
+  const computerSelection = computerPlay();
+  displaySetOutcome(playerSelection, computerSelection);
 };
 
-// create the answers
-const answers = ["rock", "paper", "scissors"];
-
-// returns randomly selected answer for computer (util)
-function computerPlay() {
+// returns randomly selected answer for computer
+computerPlay = () => {
+  const answers = ["rock", "paper", "scissors"];
   let randNum = Math.floor(Math.random() * 3);
   return answers[randNum];
-}
+};
 
-// deduct a single point from player score (util)
-function deductPoint(player) {
-  player == 0 ? (player = 0) : player--;
-}
+displaySetOutcome = (playerSelection, computerSelection) => {
+  console.log(playerSelection, computerSelection);
+};
 
 // display total scores after game (console)
 function displayScore(playerScore, computerScore) {
