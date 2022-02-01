@@ -13,6 +13,7 @@ const userAnswerOutput = document.querySelector(".user-answer");
 const computerAnswerOutput = document.querySelector(".computer-answer");
 const userScoreOutput = document.querySelector(".user-score");
 const computerScoreOutput = document.querySelector(".computer-score");
+const winnerOutput = document.querySelector(".winner");
 
 // get player and computer answers, display set outcome
 playSet = (playerSelection) => {
@@ -45,6 +46,7 @@ let displaySetOutcome = (playerSelection, computerSelection) => {
 
 let addScore = (player) => {
   player === "user" ? userScore++ : computerScore++;
+  console.log("score: ", userScore, computerScore);
 };
 
 // Return results from a single set
@@ -99,29 +101,39 @@ let changeScore = (userSelection, computerSelection) => {
   }
 };
 
+let winner;
 // Check scores to see if there is a winner
 let checkScores = () => {
-  let winner;
   if (userScore == 5) {
-    winner = true;
-    console.log("User wins!!");
+    winner = "The User";
   }
 
   if (computerScore == 5) {
-    winner = true;
-    console.log("Computer wins!");
+    winner = "Computer";
+    setTimeout(announceWinner(winner), 6000);
   }
 
   if (winner) {
-    setTimeout(resetGame, 4000);
+    // console.clear();
+    console.log(winner);
+    setTimeout(announceWinner, 500);
+    setTimeout(resetGame, 3000);
   }
 };
 
+// announce winner at the end of game
+let announceWinner = () => {
+  let message = `${winner} is the winner of this round! Congratz!!`;
+  winnerOutput.innerHTML = message;
+};
+
+// reset all fields
 let resetGame = () => {
   userScore = 0;
   computerScore = 0;
   userScoreOutput.innerHTML = userScore;
   computerScoreOutput.innerHTML = computerScore;
-  userAnswerOutput.innerHTML = " ";
-  computerAnswerOutput.innerHTML = " ";
+  userAnswerOutput.innerHTML = "";
+  computerAnswerOutput.innerHTML = "";
+  winnerOutput.innerHTML = "";
 };
