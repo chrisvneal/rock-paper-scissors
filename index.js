@@ -136,4 +136,5 @@ let resetGame = () => {
   userAnswerOutput.innerHTML = "";
   computerAnswerOutput.innerHTML = "";
   winnerOutput.innerHTML = "";
+  winner = "";
 };
