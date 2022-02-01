@@ -46,7 +46,7 @@ let displaySetOutcome = (playerSelection, computerSelection) => {
 
 let addScore = (player) => {
   player === "user" ? userScore++ : computerScore++;
-  console.log("score: ", userScore, computerScore);
+  // console.log("score: ", userScore, computerScore);
 };
 
 // Return results from a single set
@@ -115,7 +115,7 @@ let checkScores = () => {
 
   if (winner) {
     // console.clear();
-    console.log(winner);
+    // console.log(winner);
     setTimeout(announceWinner, 500);
     setTimeout(resetGame, 3000);
   }
