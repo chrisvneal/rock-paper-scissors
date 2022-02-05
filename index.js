@@ -16,7 +16,7 @@ const computerScoreOutput = document.querySelector(".computer-score");
 const winnerOutput = document.querySelector(".winner");
 
 // get player and computer answers, display set outcome
-playSet = (playerSelection) => {
+const playSet = (playerSelection) => {
   // get computer's selection
   const computerSelection = computerPlay();
 
@@ -30,7 +30,7 @@ playSet = (playerSelection) => {
 };
 
 // returns randomly selected answer for computer
-computerPlay = () => {
+const computerPlay = () => {
   const answers = ["rock", "paper", "scissors"];
   let randNum = Math.floor(Math.random() * 3);
   return answers[randNum];
