@@ -104,11 +104,11 @@ let changeScore = (userSelection, computerSelection) => {
 let winner;
 // Check scores to see if there is a winner
 let checkScores = () => {
-  if (userScore == 5) {
+  if (userScore === 5) {
     winner = "The User";
   }
 
-  if (computerScore == 5) {
+  if (computerScore === 5) {
     winner = "Computer";
     setTimeout(announceWinner(winner), 6000);
   }
